@@ -22,9 +22,9 @@ window.addEventListener("pywebviewready", async () => {
         if(kall==null) {
             render(null);
         }
-
         const govno = await window.pywebview.api.add_note(kall);
         render(govno)
+        render(await window.pywebview.api.show_notes());
     }
 
     document.getElementById("reset").onclick = async () => {
