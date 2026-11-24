@@ -2,9 +2,9 @@ import webview
 import datetime
 
 class Counter:
-    notes = []
     def __init__(self):
         self.count=0
+        self.notes = []
 
     def get_count(self):
         return self.count
@@ -23,8 +23,7 @@ class Counter:
             "Content": note
         }
         print("REUSLT!")
-
-        self.notes.append(result)
+        return self.notes.append(result)
 
     def show_notes(self):
         print("SHIT!")
@@ -38,6 +37,7 @@ if __name__ == "__main__":
         width=480,
         height=480,
         resizable=False,
+        debug=True,
     )
 
     webview.start(gui="gtk")
