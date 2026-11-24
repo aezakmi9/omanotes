@@ -1,0 +1,23 @@
+
+const counter = document.getElementById("count");
+const bar = document.getElementById("bar");
+
+function render(value) {
+    counter.textContent = value;
+    bar.style.width = `${Math.min(value / 8, 1) * 100}%`;
+}
+
+window.addEventListener("pywebviewready", async () => {
+    // Read initial value from Python
+    render(await window.pywebview.api.get_count());
+
+    document.getElementById("add").onclick = async () => {
+        const result = await window.pywebview.api.add();
+        render(result);
+    };
+
+    document.getElementById("reset").onclick = async () => {
+        const result = await window.pywebview.api.reset();
+        render(result);
+    };
+});
