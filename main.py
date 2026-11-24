@@ -37,7 +37,6 @@ if __name__ == "__main__":
         width=480,
         height=480,
         resizable=False,
-        debug=True,
     )
 
     webview.start(gui="gtk")

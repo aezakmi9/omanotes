@@ -15,7 +15,7 @@ function renderNotes(notes) {
 window.addEventListener("pywebviewready", async () => {
     // Read initial value from Python
     render(await window.pywebview.api.get_count());
-    render(await window.pywebview.api.show_notes());
+    renderNotes(await window.pywebview.api.show_notes());
 
     document.getElementById("add").onclick = async () => {
         const result = await window.pywebview.api.add();
@@ -26,8 +26,8 @@ window.addEventListener("pywebviewready", async () => {
         console.log("azshel")
         const kall = document.getElementById("i").value;
         const govno = await window.pywebview.api.add_note(kall);
-        render(govno)
-        render(await window.pywebview.api.show_notes());
+        renderNotes(govno)
+        renderNotes(await window.pywebview.api.show_notes());
     }
 
     document.getElementById("reset").onclick = async () => {
