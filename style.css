@@ -1,9 +1,9 @@
 
 :root {
-    --bg: #12151c;
-    --surface: #1a1f2a;
-    --surface-hover: #202634;
-    --border: #2a3142;
+    --bg: rgba(18, 21, 28, 0.62);
+    --surface: rgba(255, 255, 255, 0.05);
+    --surface-hover: rgba(255, 255, 255, 0.09);
+    --border: rgba(255, 255, 255, 0.10);
     --text: #e8ebf3;
     --muted: #8b95a8;
     --accent: #a5b4fc;
@@ -33,8 +33,8 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    padding: 20px;
+    gap: 10px;
+    padding: 14px;
     background:
         radial-gradient(120% 60% at 0% 0%, rgba(139, 92, 246, 0.12), transparent 60%),
         var(--bg);
@@ -72,7 +72,7 @@ button.close:hover {
 
 h2 {
     margin: 0;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 600;
     letter-spacing: -0.01em;
     background: linear-gradient(90deg, var(--text), var(--accent));
@@ -105,7 +105,7 @@ h2 {
 
 .note {
     flex-shrink: 0;
-    padding: 10px 14px 12px;
+    padding: 8px 12px 10px;
     background: var(--surface);
     border: 1px solid var(--border);
     border-left: 3px solid var(--accent-strong);
@@ -142,7 +142,7 @@ h2 {
 
 .note p {
     margin: 0;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.5;
     white-space: pre-wrap;
     overflow-wrap: anywhere;

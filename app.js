@@ -137,7 +137,7 @@ window.addEventListener("pywebviewready", async () => {
     clearDoneBtn.onclick = async () => renderNotes(await api.clear_done());
 
     input.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
+        if (e.key === "Enter" && !e.shiftKey && !e.isComposing) {
             e.preventDefault();
             addNote();
         }
