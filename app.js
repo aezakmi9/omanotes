@@ -16,6 +16,11 @@ window.addEventListener("pywebviewready", async () => {
         render(result);
     };
 
+    document.getElementById("addNote").onclick  = async () => {
+        const govno = await window.pywebview.api.add_note();
+        render(govno)
+    }
+
     document.getElementById("reset").onclick = async () => {
         const result = await window.pywebview.api.reset();
         render(result);
