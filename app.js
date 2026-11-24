@@ -28,6 +28,7 @@ window.addEventListener("pywebviewready", async () => {
         const govno = await window.pywebview.api.add_note(kall);
         renderNotes(govno)
         renderNotes(await window.pywebview.api.show_notes());
+        kall.Content = "";
     }
 
     document.getElementById("reset").onclick = async () => {
