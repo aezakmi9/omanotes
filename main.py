@@ -22,9 +22,12 @@ class Counter:
             "date": datetime.datetime.now().isoformat(),
             "Content": note
         }
+        print("REUSLT!")
+
         self.notes.append(result)
 
     def show_notes(self):
+        print("SHIT!")
         return self.notes
 
 if __name__ == "__main__":
