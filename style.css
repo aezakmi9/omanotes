@@ -93,9 +93,20 @@ h2 {
     border-left-color: var(--accent);
 }
 
+.note {
+    cursor: pointer;
+    user-select: none;
+}
+
+.note .meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
 .note time {
     display: block;
-    margin-bottom: 4px;
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.04em;
@@ -109,6 +120,81 @@ h2 {
     line-height: 1.5;
     white-space: pre-wrap;
     overflow-wrap: anywhere;
+}
+
+.note p {
+    transition: color 0.15s;
+}
+
+.note.done {
+    border-left-color: var(--border);
+    opacity: 0.6;
+}
+
+.note.done p {
+    text-decoration: line-through;
+    text-decoration-color: var(--muted);
+    color: var(--muted);
+}
+
+.note.removing {
+    opacity: 0;
+    transform: translateX(16px);
+    transition: opacity 0.15s, transform 0.15s;
+}
+
+.note textarea.edit {
+    width: 100%;
+    min-height: 0;
+    max-height: none;
+    padding: 4px 6px;
+    margin: -4px -6px;
+    background: var(--bg);
+    border: 1px solid var(--accent-strong);
+    border-radius: 6px;
+    user-select: text;
+}
+
+button.trash {
+    display: flex;
+    padding: 3px;
+    background: transparent;
+    color: var(--muted);
+    border-radius: 6px;
+    opacity: 0;
+    transition: opacity 0.15s, color 0.15s, background 0.15s;
+}
+
+.note:hover button.trash {
+    opacity: 1;
+}
+
+button.trash:hover {
+    color: #f87171;
+    background: rgba(248, 113, 113, 0.12);
+}
+
+.header-right {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+button.link {
+    padding: 0;
+    background: none;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+button.link:hover {
+    background: none;
+    text-decoration: underline;
+}
+
+button[hidden] {
+    display: none;
 }
 
 .empty {
