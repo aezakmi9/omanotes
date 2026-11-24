@@ -9,7 +9,7 @@ function render(value) {
 
 function renderNotes(notes) {
     const notesContainer = document.getElementById("notesContainer");
-    notesContainer.textContent = notes.map(note => `${note["Date"]}: ${note["Content"]}`).join("\n");
+    notesContainer.textContent = notes.map(note => `${note["date"]}: ${note["Content"]}`).join("\n");
 }
 
 window.addEventListener("pywebviewready", async () => {
@@ -25,8 +25,7 @@ window.addEventListener("pywebviewready", async () => {
     document.getElementById("addNote").onclick  = async () => {
         console.log("azshel")
         const kall = document.getElementById("i").value;
-        const govno = await window.pywebview.api.add_note(kall);
-        renderNotes(govno)
+        await window.pywebview.api.add_note(kall);
         renderNotes(await window.pywebview.api.show_notes());
         document.getElementById("i").value = "";
     }

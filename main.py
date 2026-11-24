@@ -18,12 +18,14 @@ class Counter:
         return self.count
 
     def add_note(self,note):
+        date = datetime.datetime.now().isoformat().split(".")[0]
         result =  {
-            "date": datetime.datetime.now().isoformat(),
+            "date": date,
             "Content": note
         }
         print("REUSLT!")
-        return self.notes.append(result)
+        print(date)
+        self.notes.append(result)
 
     def show_notes(self):
         print("SHIT!")
