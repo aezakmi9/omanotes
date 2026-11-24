@@ -114,6 +114,9 @@ class Counter:
         self._save()
         return self.notes
 
+    def close(self):
+        webview.windows[0].destroy()
+
     def clear_done(self):
         self.notes = [n for n in self.notes if not n.get("done")]
         self._save()
@@ -128,6 +131,9 @@ if __name__ == "__main__":
         width=480,
         height=480,
         resizable=False,
+        frameless=True,
+        easy_drag=False,
+        transparent=True,
     )
 
     webview.start(gui="gtk")

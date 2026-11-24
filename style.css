@@ -18,11 +18,12 @@ html, body {
     height: 100%;
 }
 
+html, body {
+    background: transparent;
+}
+
 body {
     margin: 0;
-    background:
-        radial-gradient(120% 60% at 0% 0%, rgba(139, 92, 246, 0.12), transparent 60%),
-        var(--bg);
     color: var(--text);
     font-family: system-ui, -apple-system, "Segoe UI", Inter, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -34,6 +35,31 @@ body {
     flex-direction: column;
     gap: 14px;
     padding: 20px;
+    background:
+        radial-gradient(120% 60% at 0% 0%, rgba(139, 92, 246, 0.12), transparent 60%),
+        var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.header {
+    cursor: grab;
+    user-select: none;
+}
+
+button.close {
+    align-self: center;
+    padding: 0 4px;
+    background: none;
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1;
+}
+
+button.close:hover {
+    background: none;
+    color: #f87171;
 }
 
 /* Header */

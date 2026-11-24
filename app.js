@@ -133,6 +133,7 @@ window.addEventListener("pywebviewready", async () => {
     };
 
     document.getElementById("addNote").onclick = addNote;
+    document.getElementById("closeBtn").onclick = () => api.close();
     clearDoneBtn.onclick = async () => renderNotes(await api.clear_done());
 
     input.addEventListener("keydown", (e) => {
