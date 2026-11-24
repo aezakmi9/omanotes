@@ -27,7 +27,15 @@ class Counter:
         print(date)
         self.notes.append(result)
 
+        with open("notes.txt", "a") as f:
+            f.write(f"{date}: {note}\n")
+
     def show_notes(self):
+        with open("notes.txt", "r") as f:
+            self.notes = []
+            for line in f:
+                date, content = line.strip().split(": ", 1)
+                self.notes.append({"date": date, "Content": content})
         print("SHIT!")
         return self.notes
 
