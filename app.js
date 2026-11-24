@@ -10,6 +10,7 @@ function render(value) {
 window.addEventListener("pywebviewready", async () => {
     // Read initial value from Python
     render(await window.pywebview.api.get_count());
+    render(await window.pywebview.api.show_notes());
 
     document.getElementById("add").onclick = async () => {
         const result = await window.pywebview.api.add();
@@ -22,6 +23,10 @@ window.addEventListener("pywebviewready", async () => {
     }
 
     document.getElementById("reset").onclick = async () => {
+        kall = getElementById("i").value;
+        if(kall==null) {
+            render(null);
+        }
         const result = await window.pywebview.api.reset();
         render(result);
     };
