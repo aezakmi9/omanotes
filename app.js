@@ -18,10 +18,8 @@ window.addEventListener("pywebviewready", async () => {
     };
 
     document.getElementById("addNote").onclick  = async () => {
+        console.log("azshel")
         kall = getElementById("i").value;
-        if(kall==null) {
-            render(null);
-        }
         const govno = await window.pywebview.api.add_note(kall);
         render(govno)
         render(await window.pywebview.api.show_notes());
