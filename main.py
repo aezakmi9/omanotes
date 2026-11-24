@@ -1,6 +1,8 @@
 import webview
+import datetime
 
 class Counter:
+    notes = []
     def __init__(self):
         self.count=0
 
@@ -14,6 +16,16 @@ class Counter:
     def reset(self):
         self.count = 0
         return self.count
+
+    def add_note(self,note):
+        result =  {
+            "date": datetime.datetime.now().isoformat(),
+            "Content": note
+        }
+        self.notes.append(result)
+
+    def show_notes(self):
+        return self.notes
 
 if __name__ == "__main__":
     webview.create_window(
