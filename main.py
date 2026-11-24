@@ -20,8 +20,8 @@ if __name__ == "__main__":
         title="Focus Widget",
         url="index.html",
         js_api=Counter(),
-        width=360,
-        height=270,
+        width=480,
+        height=480,
         resizable=False,
     )
 
