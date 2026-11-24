@@ -1,5 +1,24 @@
 import webview
 import datetime
+import os
+
+NOTES_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "notes.txt")
+
+
+def _escape(text):
+    return text.replace("\\", "\\\\").replace("\n", "\\n")
+
+
+def _unescape(text):
+    out, i = [], 0
+    while i < len(text):
+        if text[i] == "\\" and i + 1 < len(text):
+            out.append("\n" if text[i + 1] == "n" else text[i + 1])
+            i += 2
+        else:
+            out.append(text[i])
+            i += 1
+    return "".join(out)
 
 class Counter:
     def __init__(self):
@@ -18,6 +37,9 @@ class Counter:
         return self.count
 
     def add_note(self,note):
+        note = (note or "").strip()
+        if not note:
+            return
         date = datetime.datetime.now().isoformat().split(".")[0]
         result =  {
             "date": date,
@@ -27,15 +49,20 @@ class Counter:
         print(date)
         self.notes.append(result)
 
-        with open("notes.txt", "a") as f:
-            f.write(f"{date}: {note}\n")
+        with open(NOTES_FILE, "a") as f:
+            f.write(f"{date}: {_escape(note)}\n")
 
     def show_notes(self):
-        with open("notes.txt", "r") as f:
-            self.notes = []
+        self.notes = []
+        if not os.path.exists(NOTES_FILE):
+            return self.notes
+        with open(NOTES_FILE, "r") as f:
             for line in f:
-                date, content = line.strip().split(": ", 1)
-                self.notes.append({"date": date, "Content": content})
+                line = line.rstrip("\n")
+                if ": " not in line:
+                    continue
+                date, content = line.split(": ", 1)
+                self.notes.append({"date": date, "Content": _unescape(content)})
         print("SHIT!")
         return self.notes
 

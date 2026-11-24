@@ -1,81 +1,181 @@
 
+:root {
+    --bg: #12151c;
+    --surface: #1a1f2a;
+    --surface-hover: #202634;
+    --border: #2a3142;
+    --text: #e8ebf3;
+    --muted: #8b95a8;
+    --accent: #a5b4fc;
+    --accent-strong: #8b5cf6;
+}
+
 * {
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     margin: 0;
-    background: #171b24;
-    color: #f0f2f8;
-    font-family: sans-serif;
+    background:
+        radial-gradient(120% 60% at 0% 0%, rgba(139, 92, 246, 0.12), transparent 60%),
+        var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Inter, sans-serif;
+    -webkit-font-smoothing: antialiased;
 }
 
 .widget {
-    padding: 24px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 20px;
 }
 
-.box {
-    margin-top: 25px;
-    padding: 24px;
-    border:1px solid blueviolet;
+/* Header */
+.header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
 }
 
 h2 {
-    margin: 0 0 20px;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    background: linear-gradient(90deg, var(--text), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
-p {
-    color: #aab4c6;
-    font-size: 13px;
+.count {
+    font-size: 12px;
+    color: var(--muted);
+    white-space: nowrap;
 }
 
-.counter {
-    font-size: 20px;
-    margin: 12px 0;
-}
-
-#count {
-    font-size: 42px;
-    font-weight: bold;
-}
-
+/* Notes list */
 .notes {
-    font-size: 20px;
-    margin: 12px 0;
-    margin-top: 25px;
-    padding: 24px;
-    border:1px solid blueviolet;
-    color: #aab4c6;
-}
-
-.progress {
-    height: 8px;
-    background: #343c4c;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-#bar {
-    width: 0%;
-    height: 100%;
-    background: #a5b4fc;
-    transition: width 0.3s;
-}
-
-.actions {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
     display: flex;
-    gap: 10px;
-    margin-top: 20px;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 4px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+}
+
+.notes::-webkit-scrollbar { width: 6px; }
+.notes::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+.note {
+    flex-shrink: 0;
+    padding: 10px 14px 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-strong);
+    border-radius: 10px;
+    transition: background 0.15s, border-color 0.15s;
+    animation: fade-in 0.2s ease-out;
+}
+
+.note:hover {
+    background: var(--surface-hover);
+    border-left-color: var(--accent);
+}
+
+.note time {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.note p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.empty {
+    margin: auto;
+    font-size: 13px;
+    color: var(--muted);
+    text-align: center;
+}
+
+/* Composer */
+.box {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    padding: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.box:focus-within {
+    border-color: var(--accent-strong);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+}
+
+textarea {
+    flex: 1;
+    min-height: 40px;
+    max-height: 120px;
+    padding: 8px;
+    resize: none;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font: inherit;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+textarea::placeholder {
+    color: var(--muted);
 }
 
 button {
-    padding: 10px 16px;
-    background: #a5b4fc;
+    padding: 9px 16px;
+    background: var(--accent);
+    color: #1a1530;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
     border: none;
-    border-radius: 7px;
+    border-radius: 8px;
     cursor: pointer;
+    transition: background 0.15s, transform 0.05s;
 }
 
 button:hover {
     background: #c7d2fe;
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: none; }
 }
