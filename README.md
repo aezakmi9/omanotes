@@ -15,7 +15,19 @@ A small frameless desktop notes widget built with [pywebview](https://pywebview.
 ## Requirements
 
 - Python 3
-- pywebview with GTK support: `pip install "pywebview[gtk]"`
+- [pywebview](https://pywebview.flowrl.com/) 6+ with the GTK backend (needs WebKitGTK and PyGObject)
+
+Install with pip:
+
+```sh
+pip install -r requirements.txt
+```
+
+Or on Arch / Omarchy, from the system packages:
+
+```sh
+sudo pacman -S python-pywebview python-gobject webkit2gtk-4.1
+```
 
 ## Run
 
@@ -32,3 +44,7 @@ python main.py
 | `app.js`     | UI logic, calls the Python API           |
 | `style.css`  | Styling                                  |
 | `notes.json` | Saved notes                              |
+
+## License
+
+[MIT](LICENSE)
